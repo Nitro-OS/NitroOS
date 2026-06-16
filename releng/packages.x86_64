@@ -126,3 +126,16 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
+hyprland
+wayland
+xdg-desktop-portal
+xdg-desktop-portal-hyprland
+kitty
+waybar
+wofi
+rofi
+git
+neovim
+fastfetch
+btop
+nvtop
