@@ -1,0 +1,45 @@
+# import = [
+#   "~/.config/alacritty/themes/one-dark.toml"
+# ]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 0, y = 0 }
+decorations = "Buttonless"
+opacity = 0.8
+blur = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal.family = "AdwaitaMono Nerd Font"
+size = 13
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+
+  { key = "Space", mods = "Control|Shift", action = "ToggleViMode" },
+
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+]
