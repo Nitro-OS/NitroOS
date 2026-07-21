@@ -1,0 +1,20 @@
+anchor=top-center
+
+background-color=#0f1a12
+text-color=#e8f5e9
+
+border-color=#66bb6a
+border-size=2
+border-radius=14
+
+width=320
+height=110
+
+padding=12,12,12,12
+margin=12,12,0,0
+
+font=JetBrainsMono Nerd Font 10
+
+default-timeout=2500
+
+background-color=#0f1a12ff
