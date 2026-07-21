@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+#
+# Update packages from the official and unofficial user repositories
+# Passing "module" returns the update status in JSON format
+#
+# Requires pacman-contrib (checkupdates)
+#
+# Author:  Jesse Mirabel <sejjymvm@gmail.com>
+# Date:    August 16, 2025
+# License: MIT
+
+FG_GREEN="\e[32m"
+FG_BLUE="\e[34m"
+FG_RESET="\e[39m"
+
+TIMEOUT=10
+HELPERS=( aura paru pikaur trizen yay )
+
+printf() {
+	command printf "$@" >&2
+}
+
+get_helper() {
+	local helper
+	for helper in "${HELPERS[@]}"; do
+		if command -v "$helper" > /dev/null; then
+			HELPER=$helper
+			break
+		fi
+	done
+}
+
+check_updates() {
+	local output status
+
+	output=$(timeout $TIMEOUT checkupdates)
+	status=$?
+
+	if ((status != 0 && status != 2)); then
+		FAILED=true
+		return 1
+	fi
+
+	UPDATES=$(grep -c . <<< "$output")
+
+	if [[ -z $HELPER ]]; then
+		return 0
+	fi
+
+	local aur_output aur_status
+
+	aur_output=$(timeout $TIMEOUT "$HELPER" -Quaq)
+	aur_status=$?
+
+	if ((${#aur_output} > 0 && aur_status != 0)); then
+		FAILED=true
+		return 1
+	fi
+
+	AUR_UPDATES=$(grep -c . <<< "$aur_output")
+}
+
+update_packages() {
+	printf "%bUpdating pacman packages...%b\n" "$FG_BLUE" "$FG_RESET"
+	sudo pacman -Syu
+
+	if [[ -n $HELPER ]]; then
+		printf "\n%bUpdating AUR packages...%b\n" "$FG_BLUE" "$FG_RESET"
+		"$HELPER" -Syu
+	fi
+
+	notify-send "Update Complete" -i "package-install"
+
+	printf "\n%bUpdate complete!%b\n" "$FG_GREEN" "$FG_RESET"
+	read -rsn 1 -p "Press any key to exit..."
+}
+
+display_module() {
+	local icon tooltip
+
+	if $FAILED; then
+		icon='󰒑'
+		tooltip="<b>Failed to fetch updates</b>\nRight-click to retry"
+	elif ((UPDATES + AUR_UPDATES == 0)); then
+		icon='󰸟'
+		tooltip="No updates available"
+	else
+		icon='󰄠'
+		tooltip="<b>Pacman</b>: $UPDATES"
+
+		if [[ -n $HELPER ]]; then
+			local padding
+			printf -v padding "%*s" $((6 - ${#HELPER})) ''
+
+			tooltip+="\n<b>${HELPER^}</b>: $padding$AUR_UPDATES"
+		fi
+	fi
+
+	cat <<- EOF
+		{ "text": "$icon", "tooltip": "$tooltip" }
+	EOF
+}
+
+main() {
+	# Update the module on exit
+	trap "pkill -RTMIN+1 waybar" EXIT
+
+	FAILED=false
+	UPDATES=0
+	AUR_UPDATES=0
+
+	get_helper
+
+	case $1 in
+		module)
+			check_updates
+			display_module
+			;;
+		*)
+			printf "%bChecking for updates...%b\n" "$FG_BLUE" "$FG_RESET"
+
+			check_updates
+			update_packages
+			;;
+	esac
+}
+
+main "$@"

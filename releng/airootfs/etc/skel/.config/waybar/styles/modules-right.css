@@ -1,0 +1,122 @@
+/*----------------
+    Media info
+----------------*/
+
+#mpris {
+  padding: 0 12px;
+}
+
+/*------------
+    Volume
+------------*/
+
+#custom-left_div.6 {
+  color: @volume;
+}
+
+#pulseaudio,
+#wireplumber {
+  background-color: @volume;
+}
+
+/*----------------
+    Brightness
+----------------*/
+
+#custom-left_div.7 {
+  background-color: @volume;
+  color: @backlight;
+}
+
+#backlight {
+  background-color: @backlight;
+}
+
+/*-------------
+    Battery
+-------------*/
+
+#custom-left_div.8 {
+  background-color: @backlight;
+  color: @battery;
+}
+
+#battery {
+  background-color: @battery;
+}
+
+#custom-left_inv.2 {
+  color: @battery;
+}
+
+/*----------------
+    Hyprsunset
+----------------*/
+#custom-hyprsunset {
+  padding: 0 19px 0 16px;
+  background-color: @backlight;
+}
+
+#custom-left_div.9 {
+  color: @backlight;
+}
+
+/*----------------
+    Power menu
+----------------*/
+
+#custom-power {
+  border-radius: 16px;
+  padding: 0 19px 0 16px;
+  color: @accent;
+}
+
+#custom-power:hover {
+  background-color: @hover-bg;
+}
+
+/*----------------
+    Power menu
+----------------*/
+
+#tray {
+    padding: 0 6px;
+}
+
+#tray > .passive {
+    opacity: 0.6;
+}
+
+#tray > .active {
+    opacity: 1;
+}
+
+#tray > .needs-attention {
+    background: #ff5555;
+}
+
+#tray menu {
+    background: @base;
+    border: 1px solid @overlay0;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+#tray menu menuitem {
+    color: @text;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* hover = leaf highlight */
+#tray menu menuitem:hover {
+    background: @hover-bg;
+    color: @hover-fg;
+}
+
+/* separators */
+#tray menu separator {
+    background: @overlay0;
+    min-height: 1px;
+    margin: 4px 0;
+}

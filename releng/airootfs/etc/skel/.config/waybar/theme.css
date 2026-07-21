@@ -1,0 +1,53 @@
+@define-color rosewater      #e8f5e9;
+@define-color flamingo       #c8e6c9;
+@define-color pink           #a5d6a7;
+@define-color mauve          #81c784;
+@define-color red            #ef5350;
+@define-color maroon         #e57373;
+@define-color peach          #ffb74d;
+@define-color yellow         #dce775;
+@define-color green          #7fbf7f;
+@define-color teal           #66bb6a;
+@define-color sky            #4db6ac;
+@define-color sapphire       #26a69a;
+@define-color blue           #67bb6a;
+@define-color lavender       #81c784;
+
+@define-color text           #e8f5e9;
+@define-color subtext1       #c8e6c9;
+@define-color subtext0       #a5d6a7;
+
+@define-color overlay2       #81c784;
+@define-color overlay1       #66bb6a;
+@define-color overlay0       #4caf50;
+
+@define-color surface2       #2e3b2f;
+@define-color surface1       #263326;
+@define-color surface0       #1f2a1f;
+
+@define-color base           #121a12;
+@define-color mantle         #0e140e;
+@define-color crust          #0a0f0a;
+
+@define-color accent         @green;
+@define-color main-br        @green;
+@define-color main-bg        @base;
+@define-color main-fg        @text;
+@define-color hover-bg       @surface0;
+@define-color hover-fg       alpha(@text, 0.85);
+@define-color outline        shade(@surface0, 0.6);
+
+@define-color workspaces     @surface1;
+@define-color temperature    @surface1;
+@define-color memory         @surface0;
+@define-color cpu            @surface0;
+@define-color time           @surface1;
+@define-color date           @surface0;
+@define-color tray           @surface1;
+@define-color volume         @surface1;
+@define-color backlight      @surface0;
+@define-color battery        @surface1;
+
+@define-color warning        #fdd835;
+@define-color critical       #ef5350;
+@define-color charging       #66bb6a;

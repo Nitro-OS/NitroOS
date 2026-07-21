@@ -1,0 +1,8 @@
+{
+  "custom/gpu": {
+    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+    "interval": 2,
+    "format": "󰢮 {}%",
+    "on-click": "alacritty -e nvtop --gpu"
+  }
+}

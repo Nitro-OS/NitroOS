@@ -1,0 +1,44 @@
+@import "theme.css";
+
+* {
+	all: initial; /* Reset GTK theme */
+	color: @main-fg;
+}
+
+@import "styles/fonts.css";
+@import "styles/modules-center.css";
+@import "styles/modules-left.css";
+@import "styles/modules-right.css";
+@import "styles/states.css";
+
+/* .module { */
+/* 	margin-bottom: -1px; */
+/* } */
+
+/* #waybar { */
+/* 	background-color: @outline; */
+/* } */
+
+#waybar > box {
+	margin: 8px 4px 0;
+	/* background-color: @main-bg; */
+}
+
+button {
+	border-radius: 16px;
+	min-width: 16px;
+	padding: 0 10px;
+}
+button:hover {
+	background-color: @hover-bg;
+	color: @hover-fg;
+}
+
+tooltip {
+	border: 2px solid @main-br;
+	border-radius: 10px;
+	background-color: @main-bg;
+}
+tooltip > box {
+	padding: 0 6px;
+}
