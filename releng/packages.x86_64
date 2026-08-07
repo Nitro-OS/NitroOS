@@ -160,7 +160,6 @@ brightnessctl
 fzf
 networkmanager
 pacman-contrib
-nmcli
 libpulse
 pipewire
 pipewire-alsa
