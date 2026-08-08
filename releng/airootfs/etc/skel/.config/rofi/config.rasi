@@ -1,0 +1,3 @@
+configuration {
+    case-sensitive: false;
+}
