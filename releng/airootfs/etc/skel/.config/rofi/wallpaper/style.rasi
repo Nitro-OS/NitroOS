@@ -1,0 +1,84 @@
+@import "shared/colors.rasi"
+@import "shared/fonts.rasi"
+
+* {
+    background-color: transparent;
+}
+
+window {
+    width: 70%;
+    height: 75%;
+    location: center;
+    anchor: center;
+    border: 2px;
+    border-color: @selected;
+    border-radius: 24px;
+    padding: 18px;
+    background-color: @background;
+}
+
+mainbox {
+    spacing: 16px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    padding: 12px 18px;
+    spacing: 12px;
+    border-radius: 100px;
+    border-color:                @selected;
+    background-color:            @selected;
+    text-color:                  @background;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    enabled: true;
+    content: " ";
+    font: "Iosevka Nerd Font 10";
+    text-color: @background;
+    margin: 0px 4px 0px 0px;
+}
+
+entry {
+    placeholder: "Search wallpaper...";
+    placeholder-color: @background;
+    text-color: @background;
+}
+
+listview {
+    columns: 5;
+    lines: 2;
+    flow: horizontal;
+    fixed-height: true;
+    fixed-columns: true;
+    cycle: false;
+    scrollbar: false;
+    spacing: 16px;
+}
+
+element {
+    orientation: vertical;
+    padding: 10px;
+    spacing: 10px;
+    border-radius: 18px;
+    border: 2px;
+}
+
+element selected.normal {
+    background-color: @background-alt;
+    border-color: @selected;
+    border-radius: 18px;
+}
+
+element-icon {
+    size: 270px;
+    border-radius: 14px;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    text-color: @foreground;
+}
