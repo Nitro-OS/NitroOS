@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-#
-# Scan, select, and connect to Wi-Fi networks
-# Passing "off" switches off Wi-Fi
-#
-# Requires fzf and networkmanager (nmcli)
-#
-# Author:  Jesse Mirabel <sejjymvm@gmail.com>
-# Date:    August 11, 2025
-# License: MIT
 
 FG_RED="\e[31m"
 FG_RESET="\e[39m"

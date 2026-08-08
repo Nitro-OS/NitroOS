@@ -1,13 +1,3 @@
-/*---------------
-    Indicator
----------------*/
-
-#keyboard-state label,
-#language {
-  margin-right: 12px;
-  color: @hover-fg;
-}
-
 /*-----------------
     Temperature
 -----------------*/

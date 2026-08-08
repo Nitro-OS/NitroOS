@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-#
-# Update packages from the official and unofficial user repositories
-# Passing "module" returns the update status in JSON format
-#
-# Requires pacman-contrib (checkupdates)
-#
-# Author:  Jesse Mirabel <sejjymvm@gmail.com>
-# Date:    August 16, 2025
-# License: MIT
 
 FG_GREEN="\e[32m"
 FG_BLUE="\e[34m"

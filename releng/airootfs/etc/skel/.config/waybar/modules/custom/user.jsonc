@@ -1,33 +1,33 @@
 {
-	"custom/user": {
-		// "exec":
-		// "exec-if":
-		// "exec-on-event":
-		// "hide-empty-text":
-		// "return-type":
-		// "interval":
-		// "restart-interval":
-		// "signal":
-		"format": "󰍜",
-		// "format-icons":
-		// "rotate":
-		"min-length": 4,
-		"max-length": 4,
-    "on-click": "~/.config/rofi/applets/bin/apps.sh"
-		// "align":
-		// "justify":
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-update":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		// "escape":
-		// "menu":
-		// "menu-file":
-		// "menu-actions":
-		// "expand":
-	}
+  "custom/user": {
+    // "exec":
+    // "exec-if":
+    // "exec-on-event":
+    // "hide-empty-text":
+    // "return-type":
+    // "interval":
+    // "restart-interval":
+    // "signal":
+    "format": "󰍜",
+    // "format-icons":
+    // "rotate":
+    "min-length": 4,
+    "max-length": 4,
+    "on-click": "~/.config/rofi/user/apps.sh",
+    // "align":
+    // "justify":
+    // "on-click":
+    // "on-click-middle":
+    // "on-click-right":
+    // "on-update":
+    // "on-scroll-up":
+    // "on-scroll-down":
+    // "smooth-scrolling-threshold":
+    "tooltip": "Quick apps"
+    // "escape":
+    // "menu":
+    // "menu-file":
+    // "menu-actions":
+    // "expand":
+  }
 }

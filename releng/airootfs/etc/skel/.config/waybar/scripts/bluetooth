@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-#
-# Scan, select, pair, and connect to Bluetooth devices
-# Passing "off" powers off Bluetooth
-#
-# Requires bluez-utils (bluetoothctl) and fzf
-#
-# Author:  Jesse Mirabel <sejjymvm@gmail.com>
-# Date:    August 19, 2025
-# License: MIT
 
 FG_RED="\e[31m"
 FG_RESET="\e[39m"

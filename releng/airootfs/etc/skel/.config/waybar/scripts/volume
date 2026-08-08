@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-#
-# Adjust default device volume and send a notification with the current level
-#
-# Requires libpulse (pactl)
-#
-# Author:  Jesse Mirabel <sejjymvm@gmail.com>
-# Date:    September 07, 2025
-# License: MIT
 
 DEF_VALUE=1
 MIN=0
