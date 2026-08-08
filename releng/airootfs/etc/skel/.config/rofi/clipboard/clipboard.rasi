@@ -1,0 +1,169 @@
+// ▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖  ▗▄▖      ▗▄▖  ▗▄▄▖
+// ▐▛▚▖▐▌  █    █  ▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▌
+// ▐▌ ▝▜▌  █    █  ▐▛▀▚▖▐▌ ▐▌    ▐▌ ▐▌ ▝▀▚▖
+// ▐▌  ▐▌▗▄█▄▖  █  ▐▌ ▐▌▝▚▄▞▘    ▝▚▄▞▘▗▄▄▞▘
+// Github: @Nitro-OS
+
+configuration {
+    show-icons: false;
+    case-sensitive: false;
+}
+
+@import "shared/colors.rasi"
+@import "shared/fonts.rasi"
+
+* {
+    screen-margin: 0px;
+    box-spacing: 18px;
+    element-padding: 12px;
+    element-spacing: 6px;
+}
+
+/******** Window ********/
+
+window {
+    transparency: "real";
+
+    location: center;
+    anchor: center;
+
+    width: 820px;
+    height: 520px;
+
+    border: 2px;
+    border-radius: 18px;
+    border-color: @selected;
+
+    background-color: @background;
+}
+
+/******** Main ********/
+
+mainbox {
+    spacing: @box-spacing;
+    margin: 20px;
+    padding: 0px;
+
+    background-color: transparent;
+
+    children: [ "inputbar", "listview" ];
+}
+
+/******** Search ********/
+
+inputbar {
+    spacing: 14px;
+
+    padding: 14px 18px;
+
+    border: 0px;
+    border-radius: 14px;
+
+    background-color: @background-alt;
+    text-color: @foreground;
+
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    font: "Symbols Nerd Font Mono 18";
+
+    text-color: @selected;
+    background-color: transparent;
+
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+textbox-prompt-colon {
+    enabled: false;
+}
+
+entry {
+    font: "JetBrainsMono Nerd Font 12";
+    placeholder: "Search clipboard...";
+    placeholder-color: @foreground;
+
+    background-color: transparent;
+    text-color: @foreground;
+
+    vertical-align: 0.5;
+}
+
+/******** List ********/
+
+listview {
+    columns: 1;
+    lines: 10;
+
+    layout: vertical;
+
+    cycle: true;
+    dynamic: true;
+
+    fixed-columns: true;
+    fixed-height: false;
+
+    spacing: 8px;
+
+    scrollbar: false;
+
+    background-color: transparent;
+}
+
+/******** Clipboard Item ********/
+
+element {
+    orientation: horizontal;
+
+    spacing: 12px;
+
+    padding: 12px 14px;
+
+    border: 2px;
+    border-radius: 12px;
+    border-color: transparent;
+
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    background-color: @background-alt;
+    border-color: @selected;
+    text-color: @foreground;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    highlight: inherit;
+
+    horizontal-align: 0;
+    vertical-align: 0.5;
+
+    expand: true;
+}
+
+/******** Error ********/
+
+error-message {
+    border-radius: 12px;
+
+    background-color: @background;
+    text-color: @foreground;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @foreground;
+}
