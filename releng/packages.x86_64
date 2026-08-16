@@ -139,6 +139,16 @@ waybar
 wofi
 rofi
 rofi-wayland
+mesa
+vulkan-intel
+vulkan-radeon
+xf86-video-fbdev
+xf86-video-vesa
+qt5-wayland
+qt6-wayland
+xorg-xwayland
+wl-clipboard
+polkit
 git
 base-devel
 neovim
