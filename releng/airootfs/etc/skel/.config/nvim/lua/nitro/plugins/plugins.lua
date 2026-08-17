@@ -1,0 +1,466 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim",
+    lazypath
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+local dap_config = require("nitro.core.dap")
+local neotest_config = require("nitro.core.neotest")
+
+require("lazy").setup({
+
+  -- File Explorer
+  { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
+
+  -- Themes
+  { "navarasu/onedark.nvim" },
+  { "folke/tokyonight.nvim" },
+  { "tanvirtin/monokai.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
+  { "catppuccin/nvim",         name = "catppuccin" },
+  { "Mofiqul/dracula.nvim" },
+  { "shaunsingh/nord.nvim" },
+  { "sainnhe/everforest" },
+  { "rose-pine/neovim",        name = "rose-pine" },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
+  -- Statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup()
+    end,
+  },
+
+  -- Dashboard
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("nitro.ui.dashboard")
+    end,
+  },
+
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  -- Terminal
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      local ok, toggleterm = pcall(require, "toggleterm")
+      if not ok then
+        vim.notify("ToggleTerm not found!", vim.log.levels.WARN)
+        return
+      end
+
+      toggleterm.setup({
+        size = 20,
+        open_mapping = [[<c-\>]],
+        hide_numbers = true,
+        shade_terminals = false,
+        shading_factor = 2,
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = true,
+        direction = "float",
+        close_on_exit = true,
+        shell = vim.o.shell,
+        float_opts = {
+          border = "curved",
+          width = math.floor(vim.o.columns * 0.9),
+          height = math.floor(vim.o.lines * 0.9),
+          winblend = 5,
+        },
+      })
+
+      local Terminal = require("toggleterm.terminal").Terminal
+      local lazygit = Terminal:new({
+        cmd = "lazygit",
+        hidden = true,
+        direction = "float",
+        float_opts = {
+          border = "curved",
+          width = math.floor(vim.o.columns * 0.9),
+          height = math.floor(vim.o.lines * 0.9),
+        },
+        on_open = function(term)
+          vim.cmd("startinsert!")
+          vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = term.bufnr, silent = true })
+        end,
+        on_close = function()
+          vim.cmd("startinsert!")
+        end,
+      })
+
+      function _LAZYGIT_TOGGLE()
+        lazygit:toggle()
+      end
+
+      vim.keymap.set("n", "<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>",
+        { noremap = true, silent = true, desc = "Toggle LazyGit" })
+    end,
+  },
+
+  -- LSP + Mason
+  {
+    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "b0o/schemastore.nvim",
+  },
+  {
+    "mason-org/mason.nvim",
+    config = function()
+      require('mason').setup({
+        registries = {
+          'github:Crashdummyy/mason-registry',
+          'github:mason-org/mason-registry',
+        },
+      })
+    end
+  },
+
+  -- Completion (nvim-cmp)
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
+  { "saadparwaiz1/cmp_luasnip" },
+
+  -- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    config = dap_config.setup_dap,
+    keys = dap_config.keys,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+    config = dap_config.setup_dapui,
+  },
+
+  -- Snippets
+  { "L3MON4D3/LuaSnip" },
+  { "rafamadriz/friendly-snippets" },
+
+  -- Treesitter
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
+  -- CSS utilities
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      options = {},
+      filetypes = {
+        "*",
+        "!NvimTree",
+        "!dashboard",
+        "!alpha",
+        "!lazy",
+        "!TelescopePrompt",
+        "!neo-tree",
+      },
+    },
+  },
+
+  -- Auto Save
+  {
+    "pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
+        enabled = true,
+        execution_message = {
+          message = function() return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")) end,
+          dim = 0.18,
+          cleaning_interval = 1250,
+        },
+        trigger_events = { "InsertLeave", "TextChanged" },
+        conditions = {
+          exists = true,
+          filename_is_not = {},
+          filetype_is_not = {},
+          modifiable = true,
+        },
+        write_all_buffers = false,
+        debounce_delay = 135,
+      }
+    end,
+  },
+
+  -- TODO COMMENTS
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+
+  -- Auto Pairs
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
+
+  -- Transparent
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+  },
+
+  -- Gitsigns
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol",
+        delay = 500,
+        ignore_whitespace = false,
+      },
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+        end
+
+        map("n", "]h", function() gs.nav_hunk("next") end, "Next Hunk")
+        map("n", "[h", function() gs.nav_hunk("prev") end, "Prev Hunk")
+      end,
+    },
+  },
+
+  -- Noice
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  },
+
+  -- Smear Cursor
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {
+      stiffness = 0.8,
+      trailing_stiffness = 0.6,
+      stiffness_insert_mode = 0.7,
+      trailing_stiffness_insert_mode = 0.7,
+      damping = 0.95,
+      damping_insert_mode = 0.95,
+      distance_stop_animating = 0.5,
+      time_interval = 5
+    },
+  },
+
+  -- Vim Surround
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  },
+
+  -- Auto Tag
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  },
+
+  -- Trouble
+  {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
+  },
+
+  -- C#
+  { "hrsh7th/vim-vsnip" },
+  { "jlcrochet/vim-razor", },
+  {
+    "GustavEikaas/easy-dotnet.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", 'folke/snacks.nvim', },
+    config = function()
+      require("easy-dotnet").setup()
+    end
+  },
+
+  -- Project
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VimEnter",
+    config = function()
+      require("project_nvim").setup({
+        manual_mode = true,
+        detection_methods = { "pattern" },
+        patterns = {
+          ".git",
+          "_darcs",
+          ".hg",
+          ".bzr",
+          ".svn",
+          "Makefile",
+          "package.json",
+          "pyproject.toml",
+        },
+        ignore_lsp = {},
+        exclude_dirs = {},
+        show_hidden = false,
+        silent_chdir = true,
+        scope_chdir = "global",
+        datapath = vim.fn.stdpath("data"),
+      })
+
+      require("telescope").load_extension("projects")
+    end,
+  },
+
+  -- Auto Session
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    config = function()
+      vim.o.sessionoptions = "buffers,curdir,tabpages,winsize,help,globals,skiprtp,folds,localoptions"
+
+      require("auto-session").setup({
+        log_level = "info",
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_restore_enabled = false,
+        auto_session_suppress_dirs = { "~/" },
+      })
+    end,
+  },
+
+  { "simrat39/rust-tools.nvim" },
+
+  -- NeoScroll
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup()
+    end
+  },
+
+  -- Neotest
+  {
+    "nvim-neotest/neotest",
+    dependencies = neotest_config.dependencies,
+    config = neotest_config.setup,
+  },
+
+  -- Text Case
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+    end,
+    keys = {
+      "ga",
+      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+    },
+    cmd = {
+      "Subs",
+      "TextCaseOpenTelescope",
+      "TextCaseOpenTelescopeQuickChange",
+      "TextCaseOpenTelescopeLSPChange",
+      "TextCaseStartReplacingCommand",
+    },
+    lazy = false,
+  },
+
+  --- editorconfig
+  { "editorconfig/editorconfig-vim" },
+
+  -- Render markdown
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+    opts = {},
+  },
+
+  -- Diagnostics
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+      vim.diagnostic.config({ virtual_text = false })
+    end,
+  },
+
+  { "onsails/lspkind.nvim" },
+
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({
+        ui = {
+          winbar = {
+            enabled = false,
+          },
+        },
+        lightbulb = {
+          enable = false,
+        },
+      })
+      vim.lsp.handlers["textDocument/hover"] =
+          require("lspsaga.hover").hover_handler
+    end,
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+
+  -- Indent
+  {
+    'nvimdev/indentmini.nvim',
+    event = 'BufEnter',
+    config = function()
+      require('indentmini').setup()
+    end,
+  }
+})
