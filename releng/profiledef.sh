@@ -37,9 +37,13 @@ file_permissions=(
   ["/etc/skel/.config/waybar/scripts/hyprsunset-status.sh"]="0:0:755"
   ["/etc/skel/.config/waybar/scripts/hyprsunset-toggle.sh"]="0:0:755"
   ["/etc/skel/.config/waybar/scripts/power.sh"]="0:0:755"
+  ["/etc/skel/.config/waybar/scripts/network"]="0:0:755"
+  ["/etc/polkit-1/rules.d"]="polkitd:polkitd:700"
+  ["/etc/polkit-1/rules.d/50-org.freedesktop.NetworkManager.rules"]="polkitd:polkitd:600"
   ["/usr/local/bin/nhttp"]="0:0:755"
   ["/usr/local/bin/npk"]="0:0:755"
   ["/usr/local/bin/choose-mirror"]="0:0:755"
   ["/usr/local/bin/Installation_guide"]="0:0:755"
   ["/usr/local/bin/livecd-sound"]="0:0:755"
 )
+
