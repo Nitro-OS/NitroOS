@@ -164,6 +164,8 @@ mako
 libnotify
 otf-commit-mono-nerd
 ttf-adwaitamono-nerd
+ttf-jetbrains-mono-nerd
+ttf-jetbrains-mono
 ttf-iosevka-nerd
 bluez-utils
 brightnessctl
@@ -179,3 +181,4 @@ eza
 zoxide
 awww
 dolphin
+nodejs
