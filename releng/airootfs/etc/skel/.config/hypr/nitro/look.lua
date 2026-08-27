@@ -41,7 +41,12 @@ hl.config({
   animations = {
     enabled = true,
   },
+
+  cursor = {
+    no_hardware_cursors = true,
+  },
 })
+
 
 hl.config({
   dwindle = {
