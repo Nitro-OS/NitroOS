@@ -8,7 +8,9 @@ bcachefs-tools
 bind
 bolt
 brltty
-broadcom-wl
+broadcom-wl-dkms
+dkms
+linux-headers
 btrfs-progs
 clonezilla
 cloud-init
@@ -137,7 +139,6 @@ xdg-desktop-portal-hyprland
 kitty
 waybar
 wofi
-rofi
 rofi-wayland
 mesa
 vulkan-intel
@@ -153,8 +154,6 @@ git
 base-devel
 neovim
 fastfetch
-btop
-nvtop
 sddm
 alacritty
 btop
