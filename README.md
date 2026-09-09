@@ -12,8 +12,6 @@ Make sure `archiso` is installed on your system:
 sudo pacman -S --needed archiso
 ```
 
----
-
 ## Build the ISO
 
 Run `mkarchiso` with `sudo` in this directory:
@@ -32,8 +30,6 @@ Once finished, the generated ISO will be located in `out/`:
 ls -lh out/*.iso
 ```
 
----
-
 ## Clean Build Files
 
 To clean temporary build files and start fresh:
@@ -45,8 +41,6 @@ sudo umount -Rl work 2>/dev/null || true
 # Remove working and output directories
 sudo rm -rf work out
 ```
-
----
 
 ## Test the ISO with QEMU (Optional)
 
