@@ -5,5 +5,5 @@ qemu-system-x86_64 \
   -m 4096 \
   -vga virtio \
   -display gtk,gl=on \
-  -cdrom ../relang/out/*.iso \
+  -cdrom ../releng/out/*.iso \
   -boot d

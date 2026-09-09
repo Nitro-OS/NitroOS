@@ -7,5 +7,5 @@ qemu-system-x86_64 \
   -vga virtio \
   -display gtk,gl=on \
   -bios /usr/share/ovmf/x64/OVMF.4m.fd \
-  -cdrom ../relang/out/*.iso \
+  -cdrom ../releng/out/*.iso \
   -boot d

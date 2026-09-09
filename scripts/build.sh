@@ -8,14 +8,14 @@ cd "$(dirname "$0")"
 
 echo "Cleaning old build..."
 sudo umount -Rl work 2>/dev/null || true
-sudo rm -rf work out
+sudo rm -rf ../releng/work ../relang/out
 
 echo "Building ISO..."
-sudo mkarchiso -v .
+sudo mkarchiso -v ../releng
 
 echo "Build finished!"
 
 echo "Output ISO:"
-ls -lh ../relang/out/*.iso 2>/dev/null || echo "No ISO found!"
+ls -lh ../releng/out/*.iso 2>/dev/null || echo "No ISO found!"
 
 echo "Done."
