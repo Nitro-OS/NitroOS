@@ -2,15 +2,11 @@
 
 Simple scripts to build and test the **NitroOS** Live ISO.
 
----
-
 ## 1. Prerequisites
 
 ```bash
 sudo pacman -S --needed archiso qemu-desktop
 ```
-
----
 
 ## 2. Build ISO
 
@@ -21,8 +17,6 @@ Run the build script:
 ```
 
 The output ISO will be saved to `releng/out/`.
-
----
 
 ## 3. Test ISO (QEMU)
 
