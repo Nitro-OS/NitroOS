@@ -1,55 +1,39 @@
-# NitroOS Live ISO Build
+# NitroOS Live ISO
 
-Simple instructions for building the **NitroOS** Arch-based Live ISO.
+Simple scripts to build and test the **NitroOS** Live ISO.
 
 ---
 
-## Prerequisites
-
-Make sure `archiso` is installed on your system:
+## 1. Prerequisites
 
 ```bash
-sudo pacman -S --needed archiso
+sudo pacman -S --needed archiso qemu-desktop
 ```
 
-## Build the ISO
+---
 
-Run `mkarchiso` with `sudo` in this directory:
+## 2. Build ISO
+
+Run the build script:
 
 ```bash
-sudo mkarchiso -v -w work -o out .
+./scripts/build.sh
 ```
 
-- `-v`: Verbose output
-- `-w work`: Temporary build/working directory
-- `-o out`: Output directory for the final ISO image
+The output ISO will be saved to `releng/out/`.
 
-Once finished, the generated ISO will be located in `out/`:
+---
 
-```bash
-ls -lh out/*.iso
-```
+## 3. Test ISO (QEMU)
 
-## Clean Build Files
+Run the ISO in a virtual machine:
 
-To clean temporary build files and start fresh:
+- **BIOS mode:**
+  ```bash
+  ./scripts/run.sh
+  ```
 
-```bash
-# Unmount any remaining chroot binds (if previous build was interrupted)
-sudo umount -Rl work 2>/dev/null || true
-
-# Remove working and output directories
-sudo rm -rf work out
-```
-
-## Test the ISO with QEMU (Optional)
-
-You can test the built ISO using `run_archiso`:
-
-```bash
-# BIOS mode
-run_archiso -i out/nitroos-*.iso
-
-# UEFI mode
-run_archiso -u -i out/nitroos-*.iso
-```
+- **UEFI mode:**
+  ```bash
+  ./scripts/run-uefi.sh
+  ```
