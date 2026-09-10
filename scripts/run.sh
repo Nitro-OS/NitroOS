@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")/.."
 qemu-system-x86_64 \
   -enable-kvm \
   -cpu host \
@@ -5,5 +8,5 @@ qemu-system-x86_64 \
   -m 4096 \
   -vga virtio \
   -display gtk,gl=on \
-  -cdrom ../releng/out/*.iso \
+  -cdrom releng/out/*.iso \
   -boot d

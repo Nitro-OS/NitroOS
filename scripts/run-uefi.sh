@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+cd "$(dirname "$0")/.."
 qemu-system-x86_64 \
   -enable-kvm \
   -cpu host \
@@ -7,5 +9,5 @@ qemu-system-x86_64 \
   -vga virtio \
   -display gtk,gl=on \
   -bios /usr/share/ovmf/x64/OVMF.4m.fd \
-  -cdrom ../releng/out/*.iso \
+  -cdrom releng/out/*.iso \
   -boot d
