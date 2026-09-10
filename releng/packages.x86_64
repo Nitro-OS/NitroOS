@@ -2,6 +2,11 @@ alsa-utils
 amd-ucode
 arch-install-scripts
 archinstall
+calamares
+ckbcomp
+hwinfo
+polkit-qt6
+os-prober
 b43-fwcutter
 base
 bcachefs-tools
@@ -139,7 +144,7 @@ xdg-desktop-portal-hyprland
 kitty
 waybar
 wofi
-rofi-wayland
+rofi
 mesa
 vulkan-intel
 vulkan-radeon
@@ -181,3 +186,9 @@ zoxide
 awww
 dolphin
 nodejs
+cliphist
+playerctl
+grim
+slurp
+flatpak
+bazaar
