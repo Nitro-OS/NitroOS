@@ -1,0 +1,38 @@
+---
+componentName:  nitroos
+welcomeStyle:   sidebar
+welcomeExpandingLogo: true
+windowExpanding: normal
+windowSize: 1040px,680px
+windowPlacement: center
+
+strings:
+    productName:         "NitroOS"
+    shortProductName:    "NitroOS"
+    version:             "2026.09"
+    shortVersion:        "2026.09"
+    versionedName:       "NitroOS 2026.09"
+    shortVersionedName:  "NitroOS 2026.09"
+    bootloaderEntryName: "NitroOS"
+    productUrl:          "https://github.com/nitro-os"
+    supportUrl:          "https://github.com/nitro-os"
+    knownIssuesUrl:      "https://github.com/nitro-os/issues"
+    releaseNotesUrl:     "https://github.com/nitro-os/releases"
+
+images:
+    productLogo:         "icon.png"
+    productIcon:         "icon.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+stylesheet:              "stylesheet.qss"
+
+style:
+   SidebarBackground:          "#0c1210"
+   SidebarText:                "#8ab890"
+   SidebarTextCurrent:         "#6dbf6d"
+   SidebarBackgroundCurrent:   "#162816"
+   SidebarTextHighlight:       "#6dbf6d"
+   SidebarTextSelect:          "#162816"
+   SidebarTextSelectHighlight: "#6dbf6d"
+
