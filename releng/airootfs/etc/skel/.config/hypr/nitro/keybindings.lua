@@ -6,9 +6,9 @@
 
 -- Applications
 local terminal         = "alacritty"
-local fileManager      = "ghostty -e yazi"
+local fileManager      = "dolphin"
 local menu             = "~/.config/rofi/launchers/launcher.sh"
-local browser          = "/opt/zen-browser-bin/zen-bin"
+local browser          = "firefox"
 local messenger        = "Telegram"
 local camera           = "io.github.cosmic_utils.camera"
 local obsidian         = "md.obsidian.Obsidian"
