@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize Flatpak Flathub remote repository
+After=network-online.target
+Wants=network-online.target
+ConditionFileNotEmpty=/usr/bin/flatpak
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
