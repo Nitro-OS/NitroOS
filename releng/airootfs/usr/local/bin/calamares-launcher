@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if command -v /usr/local/bin/nitroos-prepare-installer >/dev/null 2>&1; then
+    sudo /usr/local/bin/nitroos-prepare-installer
+fi
+
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+    export WAYLAND_DISPLAY
+fi
+if [[ -n "$XDG_RUNTIME_DIR" ]]; then
+    export XDG_RUNTIME_DIR
+fi
+
+exec calamares "$@"
