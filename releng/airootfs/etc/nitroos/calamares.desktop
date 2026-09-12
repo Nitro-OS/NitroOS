@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install NitroOS
+GenericName=Live Installer
+Comment=Install NitroOS to your computer
+Exec=sudo -E /usr/local/bin/calamares-launcher -d
+Icon=calamares
+Terminal=false
+Categories=System;
+StartupNotify=true
+Keywords=installer;nitroos;calamares;arch;
