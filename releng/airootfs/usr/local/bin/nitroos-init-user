@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+
+mkdir -p /home/nitroos/.cache /home/nitroos/.config /home/nitroos/Desktop
+
+if [[ -d /etc/skel && -d /home/nitroos ]]; then
+    cp -rn /etc/skel/. /home/nitroos/
+fi
+
+chown -R 1000:1000 /home/nitroos
+chmod 755 /home/nitroos
+
+for grp in wheel audio video input storage network power optical lp kvm; do
+    getent group "$grp" >/dev/null && usermod -aG "$grp" nitroos 2>/dev/null || true
+done
+
+if [[ -x /usr/local/bin/nitroos-prepare-installer ]]; then
+    /usr/local/bin/nitroos-prepare-installer 2>/dev/null || true
+fi
+
