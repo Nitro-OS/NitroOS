@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize NitroOS Live User from Skel
+Before=display-manager.service sddm.service
+DefaultDependencies=no
+After=systemd-remount-fs.service local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/nitroos-init-user
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
