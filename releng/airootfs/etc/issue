@@ -1,0 +1,6 @@
+Welcome to \e[1;36mNitro OS\e[0m Live Environment (\l)
+
+- User: \e[1;32mnitroos\e[0m (Passwordless sudo)
+- Documentation: \e[4mhttps://github.com/nitro-os\e[0m
+- Wi-Fi Setup: \e[35mnmcli\e[0m or \e[35mnmtui\e[0m
+
