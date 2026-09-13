@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -e
+
+echo "==> [NitroOS] Checking installer environment and boot medium..."
+
+BOOTMNT="/run/archiso/bootmnt"
+SFS_PATH="${BOOTMNT}/arch/x86_64/airootfs.sfs"
+VMLINUZ_PATH="${BOOTMNT}/arch/boot/x86_64/vmlinuz-linux"
+
+mkdir -p "${BOOTMNT}"
+
+if [[ ! -f "${SFS_PATH}" ]]; then
+    if [[ -f "/run/archiso/copytoram/airootfs.sfs" ]]; then
+        echo "==> [NitroOS] Detected copytoram mode, linking rootfs..."
+        mkdir -p "${BOOTMNT}/arch/x86_64"
+        ln -sf "/run/archiso/copytoram/airootfs.sfs" "${SFS_PATH}"
+    else
+        ISO_DEV=""
+        for dev in $(blkid -o device); do
+            label=$(blkid -s LABEL -o value "$dev" 2>/dev/null || true)
+            if [[ "$label" =~ ^NITROOS_ ]]; then
+                ISO_DEV="$dev"
+                break
+            fi
+        done
+
+        if [[ -z "$ISO_DEV" ]]; then
+            for dev in $(blkid -t TYPE=iso9660 -o device 2>/dev/null); do
+                ISO_DEV="$dev"
+                break
+            done
+        fi
+
+        if [[ -n "$ISO_DEV" ]]; then
+            echo "==> [NitroOS] Mounting install medium from ${ISO_DEV}..."
+            mount -o ro "${ISO_DEV}" "${BOOTMNT}" 2>/dev/null || true
+        fi
+    fi
+fi
+
+if [[ ! -f "${VMLINUZ_PATH}" ]]; then
+    mkdir -p "${BOOTMNT}/arch/boot/x86_64"
+    if [[ -f "/boot/vmlinuz-linux" ]]; then
+        cp -f "/boot/vmlinuz-linux" "${VMLINUZ_PATH}" 2>/dev/null || true
+    elif [[ -f "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux" ]]; then
+        true
+    fi
+fi
+
+echo "==> [NitroOS] Installer environment check completed."
