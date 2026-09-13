@@ -1,29 +1,35 @@
 set nocompatible
-filetype off
 
-call plug#begin('~/.vim/plugged')
+let s:plug_dir = expand('~/.vim/autoload/plug.vim')
+if empty(glob(s:plug_dir))
+  silent execute '!curl -fLo ' . s:plug_dir . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-" Core plugins
-Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
-Plug 'jiangmiao/auto-pairs'
-Plug 'airblade/vim-gitgutter'
+if filereadable(s:plug_dir)
+  call plug#begin('~/.vim/plugged')
 
-" UI
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim'
+  " Core plugins
+  Plug 'tpope/vim-sensible'
+  Plug 'scrooloose/nerdtree'
+  Plug 'preservim/nerdcommenter'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'airblade/vim-gitgutter'
 
-" Search / fuzzy finder
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+  " UI
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'joshdick/onedark.vim'
 
-" Linting
-Plug 'dense-analysis/ale'
+  " Search / fuzzy finder
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
 
-call plug#end()
+  " Linting
+  Plug 'dense-analysis/ale'
+
+  call plug#end()
+endif
 
 filetype plugin indent on
 
@@ -56,7 +62,7 @@ set laststatus=2
 set termguicolors
 syntax on
 
-colorscheme onedark
+silent! colorscheme onedark
 
 " LEADER KEY
 let mapleader=" "
@@ -83,3 +89,4 @@ let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 
 let g:gitgutter_enabled = 1
+
