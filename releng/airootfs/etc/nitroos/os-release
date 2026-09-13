@@ -1,0 +1,11 @@
+NAME="Nitro OS"
+PRETTY_NAME="Nitro OS"
+ID=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://nitro-os.github.io"
+DOCUMENTATION_URL="https://nitro-os.github.io/docs"
+SUPPORT_URL="https://bbs.archlinux.org/"
+BUG_REPORT_URL="https://gitlab.archlinux.org/groups/archlinux/-/issues"
+PRIVACY_POLICY_URL="https://terms.archlinux.org/docs/privacy-policy/"
+LOGO=nitroos-logo
