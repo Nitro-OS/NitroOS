@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = filesystem
+Target = calamares
+
+[Action]
+Description = Applying NitroOS branding and custom desktop launchers...
+When = PostTransaction
+Exec = /bin/sh -c "cp -f /etc/nitroos/os-release /usr/lib/os-release 2>/dev/null || true; cp -f /etc/nitroos/calamares.desktop /usr/share/applications/calamares.desktop 2>/dev/null || true"
