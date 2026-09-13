@@ -1,0 +1,34 @@
+set linenumbers
+set softwrap
+set autoindent
+set tabsize 4
+set tabstospaces
+set constantshow
+set smarthome
+set historylog
+set mouse
+set matchbrackets "(<[{)>]}"
+set atblanks
+
+set backup
+set preserve
+set saveonexit
+
+set unix
+set noconvert
+
+set regexp
+set casesensitive
+set positionlog
+set jumpyscrolling
+set showcursor
+
+set quickblank
+set statuscolor bold,white,blue
+set titlecolor bold,white,black
+set keycolor bold,white,black
+set numbercolor bold,cyan,black
+set selectedcolor bold,black,lightyellow
+set spotlightcolor black,lightyellow
+
+include /usr/share/nano/*.nanorc
