@@ -10,7 +10,7 @@ fi
 chown -R 1000:1000 /home/nitroos
 chmod 755 /home/nitroos
 
-for grp in wheel audio video input storage network power optical lp kvm; do
+for grp in wheel audio video input storage network power optical lp kvm rfkill; do
     getent group "$grp" >/dev/null && usermod -aG "$grp" nitroos 2>/dev/null || true
 done
 
