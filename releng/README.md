@@ -1,6 +1,6 @@
-# NitroOS Live ISO
+# NitroOS ISO
 
-Simple scripts to build and test the **NitroOS** Live ISO.
+Simple scripts to build and test the **NitroOS** ISO.
 
 ---
 
