@@ -1,0 +1,8 @@
+polkit.addRule(function(action, subject) {
+    if ((action.id.indexOf("org.bluez.") === 0 ||
+         action.id.indexOf("org.freedesktop.rfkill.") === 0 ||
+         action.id.indexOf("net.connman.bluetooth.") === 0) &&
+        (subject.user === "nitroos" || subject.isInGroup("wheel"))) {
+        return polkit.Result.YES;
+    }
+});
