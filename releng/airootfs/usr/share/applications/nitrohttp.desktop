@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=NitroHTTP
+GenericName=HTTP Client
+Comment=Modern HTTP and API development client
+Exec=/usr/local/bin/NitroHttp
+Icon=nitrohttp
+Terminal=false
+Categories=Development;WebDevelopment;
+StartupNotify=true
+Keywords=http;api;rest;postman;curl;nitro;nitrohttp;
