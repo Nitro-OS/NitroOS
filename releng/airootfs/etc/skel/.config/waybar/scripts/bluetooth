@@ -10,42 +10,22 @@ printf() {
 }
 
 power_on() {
-	local state
-	state=$(bluetoothctl show | awk '/PowerState/ {print $2}')
+	if command -v rfkill >/dev/null 2>&1; then
+		if rfkill list bluetooth 2>/dev/null | grep -qi "yes"; then
+			rfkill unblock bluetooth 2>/dev/null || true
+			sleep 1
+		fi
+	fi
 
-	case $state in
-		off)
-			bluetoothctl power on > /dev/null
-			;;
-		off-blocked)
-			rfkill unblock bluetooth
-
-			local new_state
-
-			local i
-			for ((i = 1; i <= TIMEOUT; i++)); do
-				printf "\rUnblocking Bluetooth... (%d/%d)" $i $TIMEOUT
-
-				new_state=$(bluetoothctl show | awk '/PowerState/ {print $2}')
-				if [[ $new_state == on ]]; then
-					break
-				fi
-
-				sleep 1
-			done
-
-			if [[ $new_state != on ]]; then
-				notify-send "Bluetooth" "Failed to unblock" -i "package-purge"
-				exit 1
-			fi
-			;;
-		*)
-			return 0
-			;;
-	esac
+	local powered
+	powered=$(bluetoothctl show 2>/dev/null | awk '/Powered:/ {print $2}')
+	if [[ "$powered" != "yes" ]]; then
+		bluetoothctl power on > /dev/null 2>&1 || true
+		sleep 1
+	fi
 
 	notify-send "Bluetooth On" -i "network-bluetooth-activated" \
-		-h string:x-canonical-private-synchronous:bluetooth
+		-h string:x-canonical-private-synchronous:bluetooth 2>/dev/null || true
 }
 
 get_devices() {
@@ -61,7 +41,6 @@ get_devices() {
 		num=$(bluetoothctl devices | grep -c "^Device")
 		printf "\nDevices: %d" "$num"
 
-		# Move cursor 3 lines up
 		printf "\e[3F"
 
 		read -rsn 1 -t 1
@@ -142,13 +121,11 @@ main() {
 		return 0
 	fi
 
-	# Make cursor invisible
 	printf "\e[?25l"
 
 	power_on
 	get_devices
 
-	# Make cursor visible
 	printf "\e[?25h"
 
 	select_device
