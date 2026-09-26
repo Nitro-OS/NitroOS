@@ -18,6 +18,8 @@ local powermenu        = "~/.config/rofi/powermenu/powermenu.sh"
 local clipboard        = "~/.config/rofi/clipboard/clipboard.sh"
 local userMenu         = "~/.config/rofi/user/apps.sh"
 local helpMenu         = "~/.config/rofi/help/help.sh"
+local gamemode         = "~/.config/hypr/scripts/gamemode.sh"
+local tools            = "~/.config/rofi/tools/tools.sh"
 
 local logout           = "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
 
@@ -43,6 +45,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen_state({ client = -1, internal = 1 }))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(gamemode))
 
 -- Screenshots
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprshot -m region"))
@@ -53,6 +56,7 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(powermenu))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd(userMenu))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(helpMenu))
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(tools))
 
 -- Navigation
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
