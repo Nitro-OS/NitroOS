@@ -1,0 +1,8 @@
+{
+  "custom/tools": {
+    "format": "󱐌",
+    "on-click": "~/.config/rofi/tools/tools.sh",
+    "tooltip": true,
+    "tooltip-format": "Quick Tools\n• Night Light\n• Game Mode\n• Do Not Disturb\n• Clipboard History\n• Color Picker\n• Screenshot"
+  }
+}
