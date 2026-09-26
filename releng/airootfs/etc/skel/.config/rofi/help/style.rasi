@@ -5,11 +5,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "~/.config/rofi/colors/nitro.rasi"
-
-* {
-    font: "JetBrains Mono Nerd Font 10";
-}
+@import                          "~/.config/rofi/shared/colors.rasi"
+@import                          "~/.config/rofi/shared/fonts.rasi"
 
 /*****----- Main Window -----*****/
 window {

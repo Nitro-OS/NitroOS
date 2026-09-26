@@ -14,8 +14,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
+@import                          "~/.config/rofi/shared/colors.rasi"
+@import                          "~/.config/rofi/shared/fonts.rasi"
 
 * {
     /* For Screens with 1920x1080 resolution */
