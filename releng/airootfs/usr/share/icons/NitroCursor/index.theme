@@ -1,0 +1,4 @@
+[Icon Theme]
+Name=NitroCursor
+Comment=NitroOS Cursor Theme
+Inherits="hicolor"
