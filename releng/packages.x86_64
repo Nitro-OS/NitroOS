@@ -142,7 +142,6 @@ hyprshot
 wayland
 xdg-desktop-portal
 xdg-desktop-portal-hyprland
-kitty
 waybar
 wofi
 rofi
@@ -186,7 +185,7 @@ wireplumber
 eza
 zoxide
 awww
-dolphin
+thunar
 nodejs
 cliphist
 playerctl
