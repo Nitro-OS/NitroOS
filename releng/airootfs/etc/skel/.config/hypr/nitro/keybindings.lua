@@ -6,7 +6,7 @@
 
 -- Applications
 local terminal         = "alacritty"
-local fileManager      = "dolphin"
+local fileManager      = "thunar"
 local menu             = "~/.config/rofi/launchers/launcher.sh"
 local browser          = "firefox"
 local messenger        = "Telegram"
