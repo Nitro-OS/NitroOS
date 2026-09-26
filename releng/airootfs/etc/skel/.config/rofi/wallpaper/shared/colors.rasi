@@ -1,5 +1,0 @@
-@import "~/.config/rofi/colors/nitro.rasi"
-
-* {
-    foreground-alt: #888888;
-}
