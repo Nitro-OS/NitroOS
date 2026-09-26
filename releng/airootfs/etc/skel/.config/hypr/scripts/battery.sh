@@ -22,9 +22,9 @@ elif [ "$capacity" -le 70 ]; then
 elif [ "$capacity" -le 80 ]; then
     icon="󰂀"
 elif [ "$capacity" -le 90 ]; then
-    icon="󰂁"
+    icon="󰁹"
 else
-    icon="󰂂"
+    icon="󰁹"
 fi
 
 echo "$icon $capacity%"
