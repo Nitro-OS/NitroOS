@@ -17,7 +17,7 @@ lock=" Lock"
 suspend=" Suspend"
 logout=" Logout"
 
-yes=" Yes"
+yes=" Yes"
 no=" No"
 
 rofi_cmd() {
