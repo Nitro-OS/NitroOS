@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Nitro SDDM
+Description=Nitro OS Login Manager
+Author=Nitro OS
+Copyright=(c) 2026 Nitro OS
+License=MIT
+Type=sddm-theme
+Version=3.0
+MainScript=Main.qml
+Screenshot=screenshot.png
+QtVersion=6
+X-SDDM-Theme-InterfaceVersion=2
